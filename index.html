@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img class="header__logo" src="./images/logo-ludfor.png" alt="Logo Ludfor">
+            <h1 class="header__title">Bem vindo!</h1>
+        </div>
+        <div class="form__container">
+            <div>
+                <h2 class="form__title">Já possui cadastro? Faça seu login!</h2>
+                <form class="form" id="login">
+                    <label class="form__label" id="labelUsernameLogin" >Usuário:</label>
+                    <input class="form__input" id="usernameLogin" type="text" maxlength="20" required placeholder="Digite seu usuário">
+
+                    <label class="form__label"  id="labelPasswordLogin">Senha:</label>
+                    <input class="form__input" id="passwordLogin" type="password" maxlength="20" required placeholder="Digite sua senha">
+
+                    <div id="msgError"></div>
+                    <button class="form__button button" type="submit">Entrar</button>
+                </form>
+            </div>
+            <div>
+                <h2 class="form__title">Ainda não possui conta? Crie uma!</h2>
+                <form class="form" id="register">
+                    <label class="form__label" id="labelNameAccount" for="nameAccount">Nome Completo:</label>
+                    <input class="form__input" id="nameAccount" type="text" name="nameAccount" placeholder="Digite seu nome completo">
+
+                    <label class="form__label" id="labelEmailAccount" for="emailAccount">E-mail:</label>
+                    <input class="form__input" id="emailAccount" type="email" name="emailAccount" placeholder="Digite seu e-mail">
+
+                    <label class="form__label" id="labelTelAccount" for="telAccount">Telefone:</label>
+                    <input class="form__input" id="telAccount" type="tel" name="telAccount" placeholder="Digite seu telefone">
+
+                    <label class="form__label" id="labelUsernameAccount" for="usernameAccount">Nome de usuário:</label>
+                    <input class="form__input" id="usernameAccount" type="text" name="usernameAccount" placeholder="Digite seu usuário">
+
+                    <label class="form__label" id="labelPasswordAccount" for="passwordAccount">Sua senha:</label>
+                    <input class="form__input" id="passwordAccount" type="password" name="passwordAccount" placeholder="Digite sua senha">
+
+                    <label class="form__label" id="labelConfirmPassword" for="confirmPassword">Confirme sua senha:</label>
+                    <input class="form__input" id="confirmPassword" type="password" name="confirmPassword" placeholder="Digite sua senha novamente">
+
+                    <button onclick="createAccount()" class="form__button button" type="submit">Criar conta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./scripts/jQuery/jquery.mask.min.js"></script>
+    <script src="./scripts/jQuery/jquery.validate.min.js"></script>
+    <script src="./scripts/jQuery/messages_pt_BR.min.js"></script>
+    <script src="./scripts/validacao/validacaoCadastro.js"></script>
+    <script src="./scripts/main.js"></script>
+</body>
+</html>

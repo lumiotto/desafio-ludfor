@@ -1,0 +1,55 @@
+@import url('./login.css');
+@import url('./listaFuncionarios.css');
+@import url('./cadastrar.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+}
+
+:root {
+    --verde: rgb(0, 96, 88) ;
+    --verde-hover: #218f7c;
+    --branco: #fff;
+    --cinza: #d8d8d8;
+    --cinza-escuro: #424242;
+    --cinza-hover: #6d6d6d;
+    --vermelho: #b80e0e;
+    --vermelho-hover: #c03838;
+}
+
+.container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 60px auto;
+}
+
+.button {
+    padding: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.container__header__button:hover,
+.button__add:hover,
+.button__save:hover {
+    background-color: var(--verde-hover);
+}
+
+.error {
+    color: red;
+    padding-bottom: 16px;
+    font-size: 14px;
+    border-color: red;
+}

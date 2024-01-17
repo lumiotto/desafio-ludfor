@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar funcionário</title>
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="container__header">
+            <a href="./listaFuncionarios.html">
+                <img src="./images/arrow-left.svg" alt="voltar">
+            </a>
+        </div>
+
+        <div class="infos__list">
+            <form id="infos" class="infos__list__item">
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="id">ID</label>
+                    <input class="infos__list__item__input" id="id" name="id" type="text" readonly>
+                </div>
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="nameRegister">Nome Completo</label>
+                    <input class="infos__list__item__input" id="nameRegister" name="nameRegister" type="text">
+                </div>
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="emailRegister">E-mail</label>
+                    <input class="infos__list__item__input" id="emailRegister" name="emailRegister" type="email">
+                </div>
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="celRegister">Celular</label>
+                    <input class="infos__list__item__input" id="celRegister" name="celRegister" type="tel">
+                </div>
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="ramal">Ramal</label>
+                    <input class="infos__list__item__input" id="ramal" name="ramal" type="number">
+                </div>
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="address">Logradouro</label>
+                    <input class="infos__list__item__input" id="address" name="address" type="text">
+                </div>
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="number">Número</label>
+                    <input class="infos__list__item__input" id="number" name="number" type="number">
+                </div>
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="comp">Complemento</label>
+                    <input class="infos__list__item__input" id="comp" name="comp" type="text">
+                </div>
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="bairro">Bairro</label>
+                    <input class="infos__list__item__input" id="bairro" name="bairro" type="text">
+                </div>
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="city">Cidade</label>
+                    <input class="infos__list__item__input" id="city" name="city" type="text">
+                </div>
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="state">Estado</label>
+                    <input class="infos__list__item__input" id="state" name="state" type="text">
+                </div>
+                <div class="infos__list__item__container">
+                    <label class="infos__list__item__label" for="active">Ativo</label>
+                    <select class="infos__list__item__input" id="active" name="active">
+                        <option value="Sim">Sim</option>
+                        <option value="Não">Não</option>
+                    </select>
+                </div>
+
+                <div class="footer">
+                    <img class="logo" src="./images/logo-ludfor.png" alt="Logo Ludfor">
+                    <div class="buttons">
+                        <button class="button__save button" type="submit" onclick="saveEdit()">Salvar</button>
+                        <button class="button__cancel button" type="button" onclick="deleteInfo()">Excluir</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="./scripts/jQuery/jquery.mask.min.js"></script>
+        <script src="./scripts/jQuery/jquery.validate.min.js"></script>
+        <script src="./scripts/jQuery/messages_pt_BR.min.js"></script>
+        <script src="./scripts/validacao/validacaoFuncionario.js"></script>
+        <script src="./scripts/cadastrarEEditar.js"></script>
+</body>
+</html>

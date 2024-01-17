@@ -1,0 +1,53 @@
+.infos__list {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.infos__list__item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 16px;
+}
+
+.infos__list__item__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.infos__list__item__label {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 8px;
+    color: var(--cinza-escuro);
+}
+
+.infos__list__item__input {
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    margin: 0 16px 16px 0;
+}
+
+.buttons {
+    display: flex;
+    width: 100%;
+    justify-content: right;
+    padding: 16px;
+}
+
+.button__add,
+.button__save {
+    background-color: var(--verde);
+    margin-right: 8px;
+}
+
+.button__cancel {
+    background-color: var(--vermelho);
+}
+
+.button__cancel:hover {
+    background-color: var(--vermelho-hover);
+}
