@@ -1,10 +1,10 @@
-// campos requeridos para cadastro/edição
+// Campos requeridos para cadastro/edição
 const requiredFields = [nameRegister, emailRegister, celRegister, bairro, city, state, active];
-// acesso ao localStorage
+// Acesso ao localStorage
 const employeeList = JSON.parse(localStorage.getItem('employeeList') || '[]');
 
 // PÁGINA DE CADASTRO
-// criando um id aleatório para o funcionário
+// Criando um id aleatório para o funcionário
 document.addEventListener('DOMContentLoaded', () => {
     const id = document.querySelector('#id');
     const randomValue = generateRandomBigInt();
@@ -16,7 +16,7 @@ function generateRandomBigInt() {
     return BigInt(randomNum);
 }
 
-// função para CADASTRAR funcionário
+// Função para CADASTRAR funcionário
 function register() {
     let nameRegister = document.querySelector('#nameRegister');
     let emailRegister = document.querySelector('#emailRegister');
@@ -30,7 +30,7 @@ function register() {
     let state = document.querySelector('#state');
     let active = document.querySelector('#active');
 
-    // salva no localStorage apenas se os campos requeridos estão preenchidos
+    // Salva no localStorage apenas se os campos requeridos estão preenchidos
     if (validateRequiredFields(requiredFields)) {
         employeeList.push({
             id: id.value,
@@ -48,10 +48,10 @@ function register() {
         });
         localStorage.setItem('employeeList', JSON.stringify(employeeList));
     } else {
-        alert('Por favor, preencha todos os campos requeridos.');
+        showErrorToast();
     }
 }
-// função para validar os campos requeridos
+// Função para validar os campos requeridos
 function validateRequiredFields(fields) {
     return fields.every(field => field.value.trim() !== '');
 }
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Função para SALVAR a edição
 function saveEdit() {
-    // salva dados atualizados no localStorage apenas se os campos requeridos estão preenchidos
+    // Salva dados atualizados no localStorage apenas se os campos requeridos estão preenchidos
     if (validateRequiredFields(requiredFields)) {
         employeeList[index].name = document.querySelector('#nameRegister').value;
         employeeList[index].email = document.querySelector('#emailRegister').value;
@@ -99,9 +99,8 @@ function saveEdit() {
         employeeList[index].active = document.querySelector('#active').value === 'Sim' ? true : false;
 
         localStorage.setItem('employeeList', JSON.stringify(employeeList));
-        window.location.href = 'listaFuncionarios.html';
     } else {
-        alert('Por favor, preencha todos os campos requeridos.');
+        showErrorToast();
     }
 }
 
@@ -109,13 +108,24 @@ function saveEdit() {
 function deleteInfo() {
     employeeList.splice(index, 1);
     localStorage.setItem('employeeList', JSON.stringify(employeeList));
-    alert('Dados do funcionário excluídos com sucesso!');
-
-    window.location.href = 'listaFuncionarios.html';
+    showDeleteToast();
 }
 
-// impedimento de acesso à página sem login
+// Impedimento de acesso à página sem login
 if(localStorage.getItem('token') == null) {
-    alert('Você precisa estar logado para acessar essa página.')
-    window.location.href = 'index.html'
+    showLoginToast();
+}
+
+// Função para exibir mensagem de login
+function showLoginToast() {
+    const loginToast = document.querySelector('#loginToast');
+    loginToast.style.display = 'block';
+    setTimeout(function() {
+        redirectToIndex();
+    }, 3000);
+}
+
+// Função para redirecionar para a página de login
+function redirectToIndex() {
+    window.location.href = 'index.html';
 }

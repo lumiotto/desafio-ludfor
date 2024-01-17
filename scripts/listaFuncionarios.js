@@ -1,5 +1,5 @@
 // PÁGINA DA LISTA DE FUNCIONÁRIOS
-// adicionando as informações do cadastro na lista de funcionários
+// Adicionando as informações do cadastro na lista de funcionários
 document.addEventListener('DOMContentLoaded', () => {
     let employeeInfos = getInfos();
     let employeeTable = document.querySelector('.list');
@@ -39,17 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <hr>
         </div>
         `;
-
         employeeTable.appendChild(li);
 
-        // evento de click para editar
+        // Evento de click para editar
         let imgEdit = li.querySelector('.imgEdit');
         imgEdit.addEventListener('click', () => {
             window.location.href = `editar.html?id=${employee.id}`;
         });
     });
 
-    // toggle para exibir infos na lista
+    // Toggle para exibir infos na lista
     const imgToggle = document.querySelectorAll('.imgToggle');
 
     imgToggle.forEach(imgToggle => {
@@ -68,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// função para buscar os dados no localStorage
+// Função para buscar os dados no localStorage
 function getInfos() {
     const employeeList = JSON.parse(localStorage.getItem('employeeList') || '[]');
     const simplifiedList = employeeList.map(employee => {
@@ -84,15 +83,36 @@ function getInfos() {
     return simplifiedList;
 }
 
-// função para SAIR da conta, removendo o token do usuário logado
+// Função para SAIR da conta, removendo o token do usuário logado
 function logout() {
     localStorage.removeItem('token');
-    alert('Você está fazendo logout do sistema...');
-    window.location.href = 'index.html'
+    showLogoutToast();
 }
 
-// impedimento de acesso à página sem login
+// Função para exibir mensagem de logout
+function showLogoutToast() {
+    const logoutToast = document.querySelector('#logoutToast');
+    logoutToast.style.display = 'block';
+    setTimeout(function() {
+        redirectToIndex();
+    }, 3000);
+}
+
+// Função para redirecionar para a página de login
+function redirectToIndex() {
+    window.location.href = 'index.html';
+}
+
+// Impedimento de acesso à página sem login
 if(localStorage.getItem('token') == null) {
-    alert('Você precisa estar logado para acessar essa página.')
-    window.location.href = 'index.html'
+    showLoginToast();
+}
+
+// Função para exibir mensagem de login
+function showLoginToast() {
+    const loginToast = document.querySelector('#loginToast');
+    loginToast.style.display = 'block';
+    setTimeout(function() {
+        redirectToIndex();
+    }, 3000);
 }

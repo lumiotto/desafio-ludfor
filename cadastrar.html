@@ -76,11 +76,30 @@
                     <div class="buttons">
                         <button class="button__add button" type="submit" onclick="register()">Cadastrar funcionário</button>
                         <a href="./listaFuncionarios.html">
-                            <button class="button__cancel button" type="button">Cancelar</button>
+                            <button class="button__delete button" type="button">Cancelar</button>
                         </a>
                     </div>
                 </div>
             </form>
+        </div>
+
+        <div class="toast__container">
+            <div id="successToast" class="toast">
+                <p class="toast__text">
+                    <strong>Cadastro realizado!</strong> <br><br>
+                    Redirecionando para a lista de funcionários...
+                </p>
+            </div>
+            <div id="errorToast" class="toast">
+                <p class="toast__text">
+                    <strong>Erro:</strong> Existem campos incorretos.
+                </p>
+            </div>
+            <div id="loginToast" class="toast">
+                <p class="toast__text">
+                    Você precisa estar <strong>logado</strong> para acessar essa página.
+                </p>
+            </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

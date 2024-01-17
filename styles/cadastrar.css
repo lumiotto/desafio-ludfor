@@ -44,10 +44,10 @@
     margin-right: 8px;
 }
 
-.button__cancel {
+.button__delete {
     background-color: var(--vermelho);
 }
 
-.button__cancel:hover {
+.button__delete:hover {
     background-color: var(--vermelho-hover);
 }

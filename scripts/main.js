@@ -1,5 +1,5 @@
 // FORMULÁRIO DE CADASTRO   
-// função para criar nova conta
+// Função para criar nova conta
 function createAccount() {
     let nameAccount = document.querySelector('#nameAccount');
     let emailAccount = document.querySelector('#emailAccount');
@@ -8,9 +8,9 @@ function createAccount() {
     let passwordAccount = document.querySelector('#passwordAccount');
     let confirmPassword = document.querySelector('#confirmPassword');
 
-    // campos requeridos
+    // Campos requeridos
     const requiredFields = [nameAccount, emailAccount, usernameAccount, passwordAccount, confirmPassword];
-    // salva no localStorage apenas se os campos requeridos estão preenchidos
+    // Salva no localStorage apenas se os campos requeridos estão preenchidos
     if (validateRequiredFields(requiredFields)) {
         const usersList = JSON.parse(localStorage.getItem('usersList') || '[]');
         usersList.push({
@@ -20,25 +20,23 @@ function createAccount() {
             username: usernameAccount.value,
             userPassword: passwordAccount.value
         });
-
         localStorage.setItem('usersList', JSON.stringify(usersList));
     } else {
-        alert('Por favor, preencha todos os campos requeridos.');
+        showErrorToast();
     }
 }
-// função para validar os campos requeridos
+// Função para validar os campos requeridos
 function validateRequiredFields(fields) {
     return fields.every(field => field.value.trim() !== '');
 }
 
 // FORMULÁRIO DE LOGIN
-// constantes do formulário
 const usernameLogin = document.querySelector('#usernameLogin');
 const passwordLogin = document.querySelector('#passwordLogin');
 const msgError = document.querySelector('#msgError');
 const loginForm = document.querySelector('#login')
 
-// confirmação do login
+// Confirmação do login
 loginForm.addEventListener('submit', event => {
     event.preventDefault();
 
@@ -61,7 +59,7 @@ loginForm.addEventListener('submit', event => {
     if(usernameLogin.value == userValid.username && passwordLogin.value == userValid.password) {
         window.location.href = 'listaFuncionarios.html';
 
-        // criação de um token para garantir o login daquele usuário
+        // Criação de um token para garantir o login daquele usuário
         let token = Math.random().toString(16).substring(2);
         localStorage.setItem('token', token);
 
