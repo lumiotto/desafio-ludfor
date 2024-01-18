@@ -69,18 +69,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Função para buscar os dados no localStorage
 function getInfos() {
-    const employeeList = JSON.parse(localStorage.getItem('employeeList') || '[]');
-    const simplifiedList = employeeList.map(employee => {
-        return {
-            id: employee.id,
-            name: employee.name,
-            email: employee.email,
-            cel: employee.cel,
-            ramal: employee.ramal,
-            active: employee.active
-        };
+    const keys = Object.keys(localStorage);
+
+    const simplifiedList = keys.map(key => {
+        try {
+            const employee = JSON.parse(localStorage.getItem(key));
+
+            if (employee && employee.hasOwnProperty('ramal')) { // Adiciona verificação para garantir que seja um funcionário registrado
+                return {
+                    id: employee.id,
+                    name: employee.name,
+                    email: employee.email,
+                    cel: employee.cel,
+                    ramal: employee.ramal || "",
+                    active: employee.active
+                };
+            }
+        } catch (error) {
+            console.error("Error parsing JSON for key:", key, "Error:", error);
+        }
+        return null;
     });
-    return simplifiedList;
+
+    // Filtra os itens nulos (caso haja algum item no localStorage que não seja um funcionário)
+    const validEmployees = simplifiedList.filter(employee => employee !== null);
+
+    return validEmployees;
 }
 
 // Função para SAIR da conta, removendo o token do usuário logado

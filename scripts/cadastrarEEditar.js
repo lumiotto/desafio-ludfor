@@ -32,8 +32,11 @@ function register() {
 
     // Salva no localStorage apenas se os campos requeridos estão preenchidos
     if (validateRequiredFields(requiredFields)) {
-        employeeList.push({
-            id: id.value,
+        // Obtém o id do campo id
+        const id = document.querySelector('#id').value;
+
+        const employeeList = {
+            id: id,
             name: nameRegister.value,
             email: emailRegister.value,
             cel: celRegister.value,
@@ -45,8 +48,13 @@ function register() {
             city: city.value,
             state: state.value,
             active: active.value === 'true' ? true : false
-        });
-        localStorage.setItem('employeeList', JSON.stringify(employeeList));
+        };
+
+        // Adiciona ao localStorage usando o id como chave
+        localStorage.setItem(id, JSON.stringify(employeeList));
+
+        // Adiciona à lista de funcionários
+        employeeList.push(employeeList);
     } else {
         showErrorToast();
     }
@@ -63,42 +71,51 @@ const employeeId = urlParams.get('id');
 const index = employeeList.findIndex(e => e.id === employeeId);
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Obtendo as informações do localStorage usando o id
-    const employee = employeeList.find(e => e.id === employeeId);
+      // Obtendo as informações do localStorage usando o id
+    const employee = JSON.parse(localStorage.getItem(employeeId));
 
-    let activeDisplay = employee.active ? 'Sim' : 'Não';
-    // Preenchendo os campos do formulário com as informações do funcionário
-    document.querySelector('#id').value = employee.id;
-    document.querySelector('#nameRegister').value = employee.name;
-    document.querySelector('#emailRegister').value = employee.email;
-    document.querySelector('#celRegister').value = employee.cel;
-    document.querySelector('#ramal').value = employee.ramal;
-    document.querySelector('#address').value = employee.address;
-    document.querySelector('#number').value = employee.number;
-    document.querySelector('#comp').value = employee.comp;
-    document.querySelector('#bairro').value = employee.bairro;
-    document.querySelector('#city').value = employee.city;
-    document.querySelector('#state').value = employee.state;
-    document.querySelector('#active').value = activeDisplay;
+    if (employee) {
+        let activeDisplay = employee.active ? 'Sim' : 'Não';
+
+        // Preenchendo os campos do formulário com as informações do funcionário
+        document.querySelector('#id').value = employee.id;
+        document.querySelector('#nameRegister').value = employee.name;
+        document.querySelector('#emailRegister').value = employee.email;
+        document.querySelector('#celRegister').value = employee.cel;
+        document.querySelector('#ramal').value = employee.ramal;
+        document.querySelector('#address').value = employee.address;
+        document.querySelector('#number').value = employee.number;
+        document.querySelector('#comp').value = employee.comp;
+        document.querySelector('#bairro').value = employee.bairro;
+        document.querySelector('#city').value = employee.city;
+        document.querySelector('#state').value = employee.state;
+        document.querySelector('#active').value = activeDisplay;
+    }
 });
 
 // Função para SALVAR a edição
 function saveEdit() {
     // Salva dados atualizados no localStorage apenas se os campos requeridos estão preenchidos
     if (validateRequiredFields(requiredFields)) {
-        employeeList[index].name = document.querySelector('#nameRegister').value;
-        employeeList[index].email = document.querySelector('#emailRegister').value;
-        employeeList[index].cel = document.querySelector('#celRegister').value;
-        employeeList[index].ramal = document.querySelector('#ramal').value;
-        employeeList[index].address = document.querySelector('#address').value;
-        employeeList[index].number = document.querySelector('#number').value;
-        employeeList[index].comp = document.querySelector('#comp').value;
-        employeeList[index].bairro = document.querySelector('#bairro').value;
-        employeeList[index].city = document.querySelector('#city').value;
-        employeeList[index].state = document.querySelector('#state').value;
-        employeeList[index].active = document.querySelector('#active').value === 'Sim' ? true : false;
+        // Atualiza os dados no localStorage usando o id como chave
+        const editedEmployee = {
+            id: document.querySelector('#id').value,
+            name: document.querySelector('#nameRegister').value,
+            email: document.querySelector('#emailRegister').value,
+            cel: document.querySelector('#celRegister').value,
+            ramal: document.querySelector('#ramal').value,
+            address: document.querySelector('#address').value,
+            number: document.querySelector('#number').value,
+            comp: document.querySelector('#comp').value,
+            bairro: document.querySelector('#bairro').value,
+            city: document.querySelector('#city').value,
+            state: document.querySelector('#state').value,
+            active: document.querySelector('#active').value === 'Sim' ? true : false
+        };
+        localStorage.setItem(employeeId, JSON.stringify(editedEmployee));
 
-        localStorage.setItem('employeeList', JSON.stringify(employeeList));
+        // Atualiza a lista de funcionários
+        employeeList[index] = editedEmployee;
     } else {
         showErrorToast();
     }
@@ -106,8 +123,18 @@ function saveEdit() {
 
 //Função para EXCLUIR os dados do funcionário do localStorage e da lista de funcionários
 function deleteInfo() {
-    employeeList.splice(index, 1);
-    localStorage.setItem('employeeList', JSON.stringify(employeeList));
+    // Obtenha o id do funcionário que está sendo excluído
+    const idToDelete = document.querySelector('#id').value;
+
+    // Remove o item do localStorage com base no id
+    localStorage.removeItem(idToDelete);
+
+    // Atualiza a lista de funcionários após a exclusão
+    const updatedEmployeeList = getInfos();
+
+    // Atualiza o localStorage com a lista de funcionários atualizada
+    localStorage.setItem('employeeList', JSON.stringify(updatedEmployeeList));
+
     showDeleteToast();
 }
 
