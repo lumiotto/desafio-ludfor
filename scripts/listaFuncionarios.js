@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td>${employee.name}</td>
                     <td>${employee.email}</td>
                     <td>${employee.cel}</td>
-                    <td>${employee.ramal}</td>
+                    <td class="empty">${employee.ramal}</td>
                     <td>${activeDisplay}</td>
                 </tr>
             </table>

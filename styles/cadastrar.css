@@ -51,3 +51,30 @@
 .button__delete:hover {
     background-color: var(--vermelho-hover);
 }
+
+@media (max-width: 768px) {
+    .align {
+        align-items: start;
+    }
+
+    .infos__list__item {
+        flex-direction: column;
+    }
+
+    .footer {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .buttons {
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 24px;
+    }
+
+    .button__add,
+    .button__save, 
+    .button__logout {
+        margin: 16px 0;
+    }
+}
